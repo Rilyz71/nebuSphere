@@ -1,3 +1,12 @@
 import pyautogui as pg
 
-print("Hello first commit")
+
+def main():
+    # сделать определение по цвету
+    # pg.pixelMatchesColor()
+
+    print("Hello first commit")
+
+
+if __name__ == "__main__":
+    main()
