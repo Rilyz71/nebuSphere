@@ -2,8 +2,11 @@ import pyautogui
 from time import sleep
 import pygetwindow as gw
 
-X_KOEFF_1280 = 365
-Y_KOEFF_1280 = 80
+X_KOEFF_1280_SHOP = 365
+Y_KOEFF_1280_SHOP = 80
+
+X_KOEFF_1280_PLAYBUTTON = 547
+Y_KOEFF_1280_PLAYBUTTON = 645
 
 DURATION = 1
 
@@ -78,12 +81,12 @@ def get_win_coords(win_title: str):
 
 def calculate_koeffs(win_title: str, x_input, y_input):
     """
-    Функция возвращает коэффициенты на которые нужно умножить координаты левого верхнего края
+    Функция возвращает коэффициенты на которые нужно суммировать координаты левого верхнего края
     окна, чтобы получить требуемые координаты, что пользователь передал в аргументы.
     :param win_title: Название окна с которым функция будет работать.
     :param x_input: Требуемый икс.
     :param y_input: Требуемый игрек.
-    :return: Коэффициенты, на которые нужно умножить координаты левого верхнего края окна,
+    :return: Коэффициенты, на которые нужно суммировать координаты левого верхнего края окна,
      чтобы получить значения передаваемых координат X и Y.
     """
 
@@ -94,8 +97,8 @@ def calculate_koeffs(win_title: str, x_input, y_input):
 
 def move_and_click_to_plasmashop():
     # print(calculate_koeffs("Карась", 2231, 460))
-    x_koeff = X_KOEFF_1280
-    y_koeff = Y_KOEFF_1280
+    x_koeff = X_KOEFF_1280_SHOP
+    y_koeff = Y_KOEFF_1280_SHOP
     x_win, y_win = get_win_coords("Карась")
 
     x, y = x_win + x_koeff, y_win + y_koeff
@@ -105,10 +108,18 @@ def move_and_click_to_plasmashop():
 
 
 def after_death_tap_start():
-    x = 2410
-    y = 1023
+    """
+    Нажимает "Играть" сразу же после смерти игрока
+    Для безопасности после клика ожидание = 2 секунды
+    :return:
+    """
+    win_x, win_y = get_win_coords("Карась")
+
+    x = win_x + X_KOEFF_1280_PLAYBUTTON
+    y = win_y + Y_KOEFF_1280_PLAYBUTTON
 
     expected_color = (154, 7, 87)
+
     while True:
         if pyautogui.pixelMatchesColor(x, y, expected_color):
             pyautogui.click(x, y)
