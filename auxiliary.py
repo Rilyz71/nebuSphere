@@ -1,4 +1,5 @@
 import pygetwindow as gw
+import pyautogui
 
 
 # ФАЙЛ ДЛЯ ВСПОМОГАТЕЛЬНЫХ ФУНКЦИЙ, КОТОРЫЕ РАБОТАЮТ С КООРДИНАТАМИ, ОКНАМИ И ПРОЧИМИ ВЕЩАМИ
@@ -48,3 +49,14 @@ def get_all_windows():
     for window in all_windows:
         print(window.title)
     return all_windows
+
+
+def get_current_color_and_position():
+    current_position = pyautogui.position()
+    x, y = current_position
+    print(f'x = {x}, y = {y}')
+    # функция pixel возвращает по x и y код цвета
+    current_color = pyautogui.pixel(x, y)
+    print(current_color)
+
+    return x, y, current_color
