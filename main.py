@@ -29,6 +29,7 @@ def get_all_windows():
 
 
 def move_cursor_to_specified_window(title):
+    print("Выполнение функции: move_cursor_to_specified_window\n")
     try:
         # Ищем окно по его заголовку
         window = gw.getWindowsWithTitle(title)
@@ -38,17 +39,61 @@ def move_cursor_to_specified_window(title):
                 window.restore()  # Восстанавливаем окно, если оно свернуто
 
             # Получаем координаты окна
-            center_x = window.left  # + (window.width // 2)
-            center_y = window.top  # + (window.height // 2)
+            x_win = window.left
+            y_win = window.top
 
-            # Перемещаем курсор к центру найденного окна
-            pyautogui.moveTo(center_x, center_y)
-            print(f"Курсор успешно перемещен в центр окна '{title}' на координаты ({center_x}, {center_y}).")
+            # Перемещаем курсор к найденному окна
+            pyautogui.moveTo(x_win, y_win)
+            print(f"Курсор успешно перемещен в краю окна '{title}' на координаты ({x_win}, {y_win}).")
+            return x_win, y_win
         else:
             print(f"Окно с заголовком '{title}' не найдено.")
     except Exception as e:
         print(f"Произошла ошибка: {e}")
 
 
+def get_win_coords(win_title: str):
+    try:
+        # В АРГУМЕНТЫ ВВЕСТИ КООРДИНАТЫ ТРЕБУМОЙ ЗОНЫ (В КОТОРУЮ ПЕРЕДВИГАТЬ КУРСОР)
+        window = gw.getWindowsWithTitle(win_title)
+        if window:
+            window = window[0]  # Берем первое окно, если найдено несколько
+            if window.isMinimized:
+                window.restore()  # Восстанавливаем окно, если оно свернуто
+
+            # Получаем координаты окна
+            x_win = window.left
+            y_win = window.top
+            return x_win, y_win
+        else:
+            print("Окно с данным названием не найдено")
+    except Exception as e:
+        print(f"Произошла ошибка {e}")
+
+
+def calculate_koeffs(win_title: str, x_input, y_input):
+    """
+    Функция возвращает коэффициенты на которые нужно умножить координаты левого верхнего края
+    окна, чтобы получить требуемые координаты, что пользователь передал в аргументы.
+    :param win_title: Название окна с которым функция будет работать.
+    :param x_input: Требуемый икс.
+    :param y_input: Требуемый игрек.
+    :return: Коэффициенты, на которые нужно умножить координаты левого верхнего края окна,
+     чтобы получить значения передаваемых координат X и Y.
+    """
+
+    x_win, y_win = get_win_coords(win_title)
+    koeffs = x_input / x_win, y_input / y_win
+    return koeffs
+
+
+def move_and_click_to_plasmashop():
+    x_koeff, y_koeff = calculate_koeffs("Карась", 2252, 410)
+    x_win, y_win = get_win_coords("Карась")
+
+    x, y = x_win * x_koeff, y_win * y_koeff
+    pyautogui.moveTo(x, y)
+
+
 if __name__ == "__main__":
-    move_cursor_to_specified_window("(1) ChatGPT4 | Midjourney – (1)")
+    move_and_click_to_plasmashop()
