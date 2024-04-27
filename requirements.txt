@@ -1,1 +1,2 @@
-pyautogui
+pyautogui~=0.9.54
+PyGetWindow~=0.0.9

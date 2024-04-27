@@ -1,7 +1,6 @@
 import pyautogui
 import time
-
-X, Y = 2127, 371
+import pygetwindow as gw
 
 
 def pixel_match():
@@ -13,14 +12,20 @@ def pixel_match():
         print("Цвет пикселя совпадает с ожидаемым!!")
         pyautogui.moveTo(x, y)
         pyautogui.click(x, y)
-        expected_color = (242, 180, 162)
-        time.sleep(0.3)
-        if pyautogui.pixelMatchesColor(1940, 446, expected_color):
-            pyautogui.click(1940, 446)
-        else:
-            print("no")
     else:
         print("Цвет пикселя не совпадает с ожидаемым.(")
+
+
+def get_all_windows():
+    """
+    Выводит список названий всех открытых окон
+    :return: all_windows
+    """
+    all_windows = gw.getAllWindows()
+
+    for window in all_windows:
+        print(window.title)
+    return all_windows
 
 
 if __name__ == "__main__":
