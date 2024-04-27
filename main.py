@@ -107,13 +107,13 @@ def move_and_click_to_plasmashop():
     pyautogui.click(x, y)
 
 
-def after_death_tap_start():
+def after_death_tap_start(win_title):
     """
     Нажимает "Играть" сразу же после смерти игрока
     Для безопасности после клика ожидание = 2 секунды
     :return:
     """
-    win_x, win_y = get_win_coords("Карась")
+    win_x, win_y = get_win_coords(win_title)
 
     x = win_x + X_KOEFF_1280_PLAYBUTTON
     y = win_y + Y_KOEFF_1280_PLAYBUTTON
@@ -127,4 +127,4 @@ def after_death_tap_start():
 
 
 if __name__ == "__main__":
-    after_death_tap_start()
+    after_death_tap_start("Карась")
