@@ -5,6 +5,7 @@ import pygetwindow as gw
 X_KOEFF_1280 = 365
 Y_KOEFF_1280 = 80
 
+
 def pixel_match():
     expected_color = (60, 45, 48)
 
@@ -98,8 +99,11 @@ def move_and_click_to_plasmashop():
     x, y = x_win + x_koeff, y_win + y_koeff
     pyautogui.moveTo(x, y, duration=1)
     sleep(0.5)
-    pyautogui.click(x, y)  # не работает почему-то
+    pyautogui.click(x, y)  # НЕ РАБОТАЕТ В ОКНЕ BLUESTACKS
 
 
 if __name__ == "__main__":
-    move_and_click_to_plasmashop()
+    pyautogui.getWindowsWithTitle("Карась")[0].maximize()
+    pyautogui.moveTo(2191, 555, duration=0.5)
+    pyautogui.click(2191, 555)
+    # move_and_click_to_plasmashop()
