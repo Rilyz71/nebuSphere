@@ -1,7 +1,9 @@
 import pyautogui
-import time
+from time import sleep
 import pygetwindow as gw
 
+X_KOEFF_1280 = 365
+Y_KOEFF_1280 = 80
 
 def pixel_match():
     expected_color = (60, 45, 48)
@@ -83,16 +85,20 @@ def calculate_koeffs(win_title: str, x_input, y_input):
     """
 
     x_win, y_win = get_win_coords(win_title)
-    koeffs = x_input / x_win, y_input / y_win
+    koeffs = x_input - x_win, y_input - y_win
     return koeffs
 
 
 def move_and_click_to_plasmashop():
-    x_koeff, y_koeff = calculate_koeffs("Карась", 2252, 410)
+    # print(calculate_koeffs("Карась", 2231, 460))
+    x_koeff = X_KOEFF_1280
+    y_koeff = Y_KOEFF_1280
     x_win, y_win = get_win_coords("Карась")
 
-    x, y = x_win * x_koeff, y_win * y_koeff
-    pyautogui.moveTo(x, y)
+    x, y = x_win + x_koeff, y_win + y_koeff
+    pyautogui.moveTo(x, y, duration=1)
+    sleep(0.5)
+    pyautogui.click(x, y)  # не работает почему-то
 
 
 if __name__ == "__main__":
