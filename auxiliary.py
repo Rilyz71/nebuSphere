@@ -63,7 +63,7 @@ def get_current_color_and_position():
 
 
 def count_pixel_with_target_color(region=(1017, 444, 90, 630), target_color=(254, 0, 161),
-                                  autoprint=0):
+                                  autoprint=0, matrix=0):
     """
     Вывод данных:
                     for coords in found_pixels:
@@ -73,6 +73,7 @@ def count_pixel_with_target_color(region=(1017, 444, 90, 630), target_color=(254
     :param region: x, y, ширина, высота
     :param target_color: цвет
     :param autoprint: Автовывод данных принтом
+    :param matrix: Вывод матрицы с координатами пикселей (а не количество)
     :return:
     """
     # x, y, ширина (по x), высота (по y)
@@ -87,13 +88,23 @@ def count_pixel_with_target_color(region=(1017, 444, 90, 630), target_color=(254
 
             if pixel_color == target_color:
                 count += 1
-                absolute_x = x + region[0]
-                absolute_y = y + region[1]
-                found_pixels.append((absolute_x, absolute_y))
+
+                if matrix == 1:
+                    absolute_x = x + region[0]
+                    absolute_y = y + region[1]
+                    found_pixels.append((absolute_x, absolute_y))
 
                 if autoprint == 1:
                     print(f"{count} Пиксель найден на позиции {x + region[0]}, {y + region[1]}")
+    if count == 0:
+        print("Пиксели не найдены")
+
+    if matrix == 1:
+        return found_pixels
+    else:
+        return count
 
 
 if __name__ == "__main__":
-    get_current_color_and_position()
+    a = count_pixel_with_target_color()
+    print(a)
