@@ -103,5 +103,4 @@ def count_pixel_with_target_color(region=(1017, 444, 90, 630), target_color=(254
 
 
 if __name__ == "__main__":
-    a = count_pixel_with_target_color()
-    print(a)
+    get_current_color_and_position()
