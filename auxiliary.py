@@ -77,7 +77,6 @@ def count_pixel_with_target_color(region=(1017, 444, 90, 630), target_color=(254
     :return:
     """
     # x, y, ширина (по x), высота (по y)
-
     screenshot = pyautogui.screenshot(region=region)
 
     count = 0
@@ -88,21 +87,19 @@ def count_pixel_with_target_color(region=(1017, 444, 90, 630), target_color=(254
 
             if pixel_color == target_color:
                 count += 1
+                abs_x = x + region[0]
+                abs_y = y + region[1]
 
                 if matrix == 1:
-                    absolute_x = x + region[0]
-                    absolute_y = y + region[1]
-                    found_pixels.append((absolute_x, absolute_y))
+                    found_pixels.append((abs_x, abs_y))
 
                 if autoprint == 1:
-                    print(f"{count} Пиксель найден на позиции {x + region[0]}, {y + region[1]}")
-    if count == 0:
-        print("Пиксели не найдены")
+                    print(f"{count} Пиксель найден на позиции {abs_x}, {abs_y}")
 
-    if matrix == 1:
-        return found_pixels
-    else:
-        return count
+    if count == 0:
+        print("Пиксели не найдены.")
+
+    return found_pixels if matrix == 1 else count
 
 
 if __name__ == "__main__":
