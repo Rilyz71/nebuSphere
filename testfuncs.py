@@ -2,19 +2,6 @@ import pyautogui
 import pygetwindow as gw
 
 
-def pixel_match():
-    expected_color = (60, 45, 48)
-
-    x, y = 2127, 374
-
-    if pyautogui.pixelMatchesColor(x, y, expected_color):
-        print("Цвет пикселя совпадает с ожидаемым!!")
-        pyautogui.moveTo(x, y)
-        pyautogui.click(x, y)
-    else:
-        print("Цвет пикселя не совпадает с ожидаемым.(")
-
-
 def move_cursor_to_specified_window(title):
     print("Выполнение функции: move_cursor_to_specified_window\n")
     try:
