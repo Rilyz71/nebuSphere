@@ -101,5 +101,20 @@ def count_pixel_with_target_color(region=(1017, 444, 90, 630), target_color=(254
     return found_pixels if matrix == 1 else count
 
 
+def get_window_size(title):
+    try:
+        # Получаем окно по его названию
+        window = gw.getWindowsWithTitle(title)[0]  # Берем первое найденное окно с таким названием
+        if window:
+            # Получаем размеры окна
+            width, height = window.width, window.height
+            print(f"Размер окна '{title}': {width}x{height}")
+            return width, height
+        else:
+            print(f"Окно с названием '{title}' не найдено.")
+    except IndexError:
+        print(f"Окно с названием '{title}' не найдено.")
+
+
 if __name__ == "__main__":
     get_current_color_and_position()

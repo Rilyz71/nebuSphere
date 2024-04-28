@@ -1,5 +1,6 @@
 ---------------------------------------
 resolution: 1280x720
+local_size: 1430x823
 DPI: 240
 
 Graphics
