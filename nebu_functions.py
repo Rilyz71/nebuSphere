@@ -66,3 +66,20 @@ def get_score_from_screen(win_title: str):
     print(f"Score: {score.strip()}")
     return score.strip()
 
+
+def text_in_chat(msg: str, win_title: str = "No Name"):
+    winx, winy = get_win_coords(win_title)
+    pyautogui.click(winx + X_KOEFF_1280_CHAT_LINE, winy + Y_KOEFF_1280_CHAT_LINE)
+    pyautogui.write(msg)
+
+    x = winx + X_KOEFF_1280_ENTER_CHAT
+    y = winy + Y_KOEFF_1280_ENTER_CHAT
+
+    pyautogui.click(x, y)
+
+
+def score_chat_cycle(n: int, score_from_win: str = "Карась"):
+    for i in range(1, n):
+        score = get_score_from_screen(score_from_win)
+        text_in_chat(f"Score: {score}")
+        sleep(1.8)
