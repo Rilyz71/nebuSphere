@@ -14,3 +14,16 @@ def move_and_click_to_plasmashop():
     pyautogui.moveTo(x, y, duration=DURATION)
     sleep(0.5)
     pyautogui.click(x, y)
+
+
+def experemental_antioffline():
+    # TODO: Антиоффлайн
+
+    # Для меню
+    # x = 1279, y = 983
+    # (128, 202, 195)
+    pass
+
+
+if __name__ == "__main__":
+    count_pixel_with_target_color(autoprint=1)

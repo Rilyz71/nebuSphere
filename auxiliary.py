@@ -60,3 +60,40 @@ def get_current_color_and_position():
     print(current_color)
 
     return x, y, current_color
+
+
+def count_pixel_with_target_color(region=(1017, 444, 90, 630), target_color=(254, 0, 161),
+                                  autoprint=0):
+    """
+    Вывод данных:
+                    for coords in found_pixels:
+                    print(coords)
+
+    Функция подсчитывает и выводит количество пикселей с заданным цветом в определённой области
+    :param region: x, y, ширина, высота
+    :param target_color: цвет
+    :param autoprint: Автовывод данных принтом
+    :return:
+    """
+    # x, y, ширина (по x), высота (по y)
+
+    screenshot = pyautogui.screenshot(region=region)
+
+    count = 0
+    found_pixels = []
+    for x in range(region[2]):
+        for y in range(region[3]):
+            pixel_color = screenshot.getpixel((x, y))
+
+            if pixel_color == target_color:
+                count += 1
+                absolute_x = x + region[0]
+                absolute_y = y + region[1]
+                found_pixels.append((absolute_x, absolute_y))
+
+                if autoprint == 1:
+                    print(f"{count} Пиксель найден на позиции {x + region[0]}, {y + region[1]}")
+
+
+if __name__ == "__main__":
+    get_current_color_and_position()
