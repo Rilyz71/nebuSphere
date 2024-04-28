@@ -2,11 +2,10 @@ import pygetwindow as gw
 import pyautogui
 
 
-# ФАЙЛ ДЛЯ ВСПОМОГАТЕЛЬНЫХ ФУНКЦИЙ, КОТОРЫЕ РАБОТАЮТ С КООРДИНАТАМИ, ОКНАМИ И ПРОЧИМИ ВЕЩАМИ
+# ФАЙЛ ДЛЯ ВСПОМОГАТЕЛЬНЫХ ФУНКЦИЙ
 
 def get_win_coords(win_title: str):
     try:
-        # В АРГУМЕНТЫ ВВЕСТИ КООРДИНАТЫ ТРЕБУМОЙ ЗОНЫ (В КОТОРУЮ ПЕРЕДВИГАТЬ КУРСОР)
         window = gw.getWindowsWithTitle(win_title)
         if window:
             window = window[0]  # Берем первое окно, если найдено несколько
