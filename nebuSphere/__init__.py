@@ -6,4 +6,4 @@ from . import sphere
 
 def start():
     sphere.neuro_zaglushka()
-    nebu.experemental.move_and_click_to_plasmashop("Карась")
+    nebu.after_death_tap_start("Карась")
