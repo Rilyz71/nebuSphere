@@ -1,4 +1,4 @@
-from . import experemental
+from . import experimental
 
 
 def neuro_zaglushka():
