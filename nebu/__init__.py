@@ -1,4 +1,4 @@
-from const import *
+from coefficients import *
 from auxiliary import *
 import pyautogui
 from time import sleep
