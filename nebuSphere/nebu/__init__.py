@@ -4,7 +4,7 @@ from PIL import Image
 from time import sleep
 import pyautogui
 import pytesseract
-from . import experemental
+from . import experimental
 
 
 def after_death_tap_start(win_title):
