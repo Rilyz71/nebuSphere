@@ -116,5 +116,25 @@ def get_window_size(title):
         print(f"Окно с названием '{title}' не найдено.")
 
 
+def fwrite_coefficients(win_title, to_x, to_y):
+    """
+    Записывает коэффициенты в отдельный файл для
+    ускорения процесса получения нужных коэффициентов
+    :param win_title: Название окна
+    :param to_x: Требуемый икс на координатной сетке окна
+    :param to_y: Требуемый игрек на координатной сетке окна
+    :return:
+    """
+    coeff_x, coeff_y = calculate_koeffs(win_title, to_x, to_y)
+
+    # Открыть файл для записи
+    with open('new_coefficients.txt', 'w') as f:
+        # Записаем коэффициенты в файл
+        f.write(f'{coeff_x}\n{coeff_y}')
+
+    # Закрываем файл
+    f.close()
+
+
 if __name__ == "__main__":
     get_current_color_and_position()

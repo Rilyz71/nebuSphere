@@ -82,4 +82,4 @@ def score_chat_cycle(n: int, score_from_win: str = "Карась"):
     for i in range(1, n):
         score = get_score_from_screen(score_from_win)
         text_in_chat(f"Score: {score}")
-        sleep(1.8)
+        sleep(1.9)
