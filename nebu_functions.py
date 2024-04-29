@@ -14,8 +14,8 @@ def after_death_tap_start(win_title):
     """
     win_x, win_y = get_win_coords(win_title)
 
-    x = win_x + X_KOEFF_1280_PLAYBUTTON
-    y = win_y + Y_KOEFF_1280_PLAYBUTTON
+    x = win_x + X_COEFF_1280_PLAYBUTTON
+    y = win_y + Y_COEFF_1280_PLAYBUTTON
 
     expected_color = (154, 7, 87)
 
@@ -31,8 +31,8 @@ def antioffline(win_title: str):
     # + Отслеживание положения окна каждый 1.5 сек
     while True:
         win_x, win_y = get_win_coords(win_title)
-        x = win_x + X_KOEFF_1280_ANTIOFF_SIGH
-        y = win_y + Y_KOEFF_1280_ANTIOFF_SIGH
+        x = win_x + X_COEFF_1280_ANTIOFF_SIGH
+        y = win_y + Y_COEFF_1280_ANTIOFF_SIGH
         pixel = pyautogui.pixelMatchesColor(x, y, target_color)
 
         print(f"Checked - {x}, {y}")
@@ -53,10 +53,10 @@ def get_score_from_screen(win_title: str):
     # ФУНКЦИЯ НЕ ВИДИТ ДВУЗНАЧНЫЕ ЧИСЛА
 
     win_x, win_y = get_win_coords(win_title)
-    x = win_x + X_KOEFF_1280_SCORE
-    y = win_y + Y_KOEFF_1280_SCORE
-    screenshot = pyautogui.screenshot(region=(x, y, WIDTH_KOEFF_1280_SCORE,
-                                              HEIGHT_KOEFF_1280_SCORE))
+    x = win_x + X_COEFF_1280_SCORE
+    y = win_y + Y_COEFF_1280_SCORE
+    screenshot = pyautogui.screenshot(region=(x, y, WIDTH_COEFF_1280_SCORE,
+                                              HEIGHT_COEFF_1280_SCORE))
 
     pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
 
@@ -69,11 +69,11 @@ def get_score_from_screen(win_title: str):
 
 def text_in_chat(msg: str, win_title: str = "No Name"):
     winx, winy = get_win_coords(win_title)
-    pyautogui.click(winx + X_KOEFF_1280_CHAT_LINE, winy + Y_KOEFF_1280_CHAT_LINE)
+    pyautogui.click(winx + X_COEFF_1280_CHAT_LINE, winy + Y_COEFF_1280_CHAT_LINE)
     pyautogui.write(msg)
 
-    x = winx + X_KOEFF_1280_ENTER_CHAT
-    y = winy + Y_KOEFF_1280_ENTER_CHAT
+    x = winx + X_COEFF_1280_ENTER_CHAT
+    y = winy + Y_COEFF_1280_ENTER_CHAT
 
     pyautogui.click(x, y)
 
