@@ -1,9 +1,9 @@
-from coefficients import *
-from auxiliary import *
-import pyautogui
-from time import sleep
-import pytesseract
+from nebuSphere.data.coefficients import *
+from nebuSphere.auxiliary import *
 from PIL import Image
+from time import sleep
+import pyautogui
+import pytesseract
 
 
 def after_death_tap_start(win_title):
@@ -50,7 +50,7 @@ def get_score_from_screen(win_title: str):
     :return: Счёт игрока
     """
 
-    # ФУНКЦИЯ НЕ ВИДИТ ДВУЗНАЧНЫЕ ЧИСЛА
+    # ФУНКЦИЯ ПЛОХО ВИДИТ ДВУЗНАЧНЫЕ ЧИСЛА
 
     win_x, win_y = get_win_coords(win_title)
     x = win_x + X_COEFF_1280_SCORE
