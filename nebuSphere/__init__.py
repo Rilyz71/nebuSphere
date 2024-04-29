@@ -6,4 +6,4 @@ from . import sphere
 
 def start():
     sphere.neuro_zaglushka()
-    auxiliary.get_current_color_and_position()
+    nebu.experemental.move_and_click_to_plasmashop("Карась")
