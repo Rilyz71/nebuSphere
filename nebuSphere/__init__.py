@@ -5,5 +5,8 @@ from . import sphere
 
 
 def start():
-    sphere.neuro_zaglushka()
-    nebu.after_death_tap_start("Карась")
+    auxiliary.get_current_color_and_position()
+
+
+def dash():
+    sphere.experimental.exp_sphere_pixel_cycle("Карась")
