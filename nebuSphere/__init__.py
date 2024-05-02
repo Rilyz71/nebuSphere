@@ -2,6 +2,7 @@ from . import auxiliary
 from . import data
 from . import nebu
 from . import sphere
+import pyautogui
 
 
 def start():
@@ -9,4 +10,4 @@ def start():
 
 
 def dash():
-    sphere.experimental.exp_sphere_pixel_cycle("Карась")
+    pass

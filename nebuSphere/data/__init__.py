@@ -1,2 +1,2 @@
 
-from . import coefficients
+from .coefficients import *

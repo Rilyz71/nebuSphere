@@ -1,8 +1,7 @@
 import pygetwindow as gw
 import pyautogui
+from nebuSphere import data
 
-
-# ФАЙЛ ДЛЯ ВСПОМОГАТЕЛЬНЫХ ФУНКЦИЙ
 
 def get_win_coords(win_title: str):
     try:
@@ -35,6 +34,7 @@ def calculate_koeffs(win_title: str, x_input, y_input):
 
     x_win, y_win = get_win_coords(win_title)
     koeffs = x_input - x_win, y_input - y_win
+    print(koeffs)
     return koeffs
 
 
@@ -116,24 +116,19 @@ def get_window_size(title):
         print(f"Окно с названием '{title}' не найдено.")
 
 
-def fwrite_coefficients(win_title, to_x, to_y):
-    """
-    Записывает коэффициенты в отдельный файл для
-    ускорения процесса получения нужных коэффициентов
-    :param win_title: Название окна
-    :param to_x: Требуемый икс на координатной сетке окна
-    :param to_y: Требуемый игрек на координатной сетке окна
-    :return:
-    """
-    coeff_x, coeff_y = calculate_koeffs(win_title, to_x, to_y)
+def search_color_in_game(win_title: str, color):
+    win_x, win_y = get_win_coords(win_title)
+    region = (win_x, win_y, data.LOCAL_WINDOW_WIDTH, data.LOCAL_WINDOW_HEIGHT)
 
-    # Открыть файл для записи
-    with open('new_coefficients.txt', 'w') as f:
-        # Записаем коэффициенты в файл
-        f.write(f'{coeff_x}\n{coeff_y}')
+    screenshot = pyautogui.screenshot(region=region)
+    for x in range(region[2]):
+        for y in range(region[3]):
+            pixel_color = screenshot.getpixel((x, y))
 
-    # Закрываем файл
-    f.close()
+            if pixel_color == color:
+                return x, y
+    print("Not Found")  # todo: сделать вместо принта исключение
+    return 0, 0
 
 
 if __name__ == "__main__":
